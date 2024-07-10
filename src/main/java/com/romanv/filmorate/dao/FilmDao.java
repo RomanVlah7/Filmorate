@@ -2,7 +2,6 @@ package com.romanv.filmorate.dao;
 
 import com.romanv.filmorate.dao.interfaces.FilmDaoInterface;
 import com.romanv.filmorate.model.Film;
-import com.romanv.filmorate.services.FilmIServiceInterface;
 import org.springframework.http.ResponseEntity;
 
 import java.util.List;
@@ -11,32 +10,32 @@ import java.util.Map;
 public class FilmDao implements FilmDaoInterface {
 
     @Override
-    public List<Map<String, Object>> addFilmToStorage(Film film) {
+    public List<Map<String, Object>> addFilmToDB(String title, String description) {
+        return null;
+    }
+
+    @Override
+    public void deleteFilmFromDB(Long filmID) {
+
+    }
+
+    @Override
+    public void likeFilmFromDB(Long filmID) {
+
+    }
+
+    @Override
+    public void removeLikeForFilmFromDB(Long filmID) {
+
+    }
+
+    @Override
+    public List<Film> listFilmsFromDB() {
         return List.of();
     }
 
     @Override
-    public void deleteFilmFromStorage(Long filmID) {
-
-    }
-
-    @Override
-    public void likeFilmFromStorage(Long filmID, Long userIDwhoWantsToLike) {
-
-    }
-
-    @Override
-    public void removeLikeForFilmFromStorage(Long filmID) {
-
-    }
-
-    @Override
-    public List<Film> listFilmsFromStorage() {
-        return List.of();
-    }
-
-    @Override
-    public List<Map<String, Object>> listTopTenFromStorage() {
+    public List<Map<String, Object>> listTopTenFromDB() {
         return List.of();
     }
 
@@ -46,7 +45,7 @@ public class FilmDao implements FilmDaoInterface {
     }
 
     @Override
-    public ResponseEntity<Map<String, String>> editFilmDataInStorage(Film film) {
+    public ResponseEntity<Map<String, String>> editFilmDataInDB(Film film) {
         return null;
     }
 }

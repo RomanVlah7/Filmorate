@@ -7,19 +7,19 @@ import java.util.List;
 import java.util.Map;
 
 public interface FilmDaoInterface {
-    List<Map<String,Object>> addFilmToStorage(Film film);
+    List<Map<String,Object>> addFilmToDB(String title, String description);
 
-    void deleteFilmFromStorage(Long filmID);
+    void deleteFilmFromDB(Long filmID);
 
-    void likeFilmFromStorage(Long filmID, Long userIDwhoWantsToLike);
+    void likeFilmFromDB(Long filmID);
 
-    void removeLikeForFilmFromStorage(Long filmID);
+    void removeLikeForFilmFromDB(Long filmID);
 
-    List<Film> listFilmsFromStorage();
+    List<Film> listFilmsFromDB();
 
-    List<Map<String,Object>> listTopTenFromStorage();
+    List<Map<String,Object>> listTopTenFromDB();
 
     boolean contains(Long filmID);
 
-    ResponseEntity<Map<String, String>> editFilmDataInStorage(Film film);
+    ResponseEntity<Map<String, String>> editFilmDataInDB(Film film);
 }

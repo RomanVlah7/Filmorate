@@ -48,7 +48,7 @@ public class User implements Comparable<User> {
     }
 
     public void removeFromLikedList(long filmID) {
-        likedFilms.remove(filmID);
+        //todo
     }
 
     private enum friendshipStatus{
