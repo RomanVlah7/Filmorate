@@ -16,32 +16,49 @@ public class Film {
 
     private final long id;
     @NotBlank
-    private String name;
+    private String userName;
     @NotBlank
     private String description;
     @Past
     private Instant releaseDate;
     @JsonDeserialize(using = DurationDesializer.class)
-    private Duration durationOfFilm;
-    private TreeMap<Long, User> peopleWhoLiked = new TreeMap<>();
-    private int numberOfLikes = 0;
+    private int durationOfFilm;
+    private int peopleWhoLiked;
+    private String filmGenre;
+    private String filmMPARate;
 
-    public Film(long id, String name, String description, Instant releaseDate, Duration durationOfFilm, TreeMap<Long, User> peopleWhoLiked, int numberOfLikes) {
+    public Film(long id, String userName, String description, Instant releaseDate, int durationOfFilm, int peopleWhoLiked, String filmGenre, String filmMPARate) {
         this.id = id;
-        this.name = name;
+        this.userName = userName;
         this.description = description;
         this.releaseDate = releaseDate;
         this.durationOfFilm = durationOfFilm;
         this.peopleWhoLiked = peopleWhoLiked;
-        this.numberOfLikes = numberOfLikes;
+        this.filmGenre = filmGenre;
+        this.filmMPARate = filmMPARate;
     }
 
     public void likeThisFilm(long userIDwhoWantsToLike){
-        if(!peopleWhoLiked.containsKey(userIDwhoWantsToLike)){
-            peopleWhoLiked.put(userIDwhoWantsToLike, InMemoryUserStorage.getById(userIDwhoWantsToLike));
-            ++numberOfLikes;
-        }
+        //todo
     }
+
+    private enum FilmGenre {
+        COMEDY,
+        DRAMA,
+        CARTOON,
+        THRILLER,
+        DOCUMENTARY,
+        ACTION_MOVIE
+    }
+
+    private enum FilmMPARate{
+        G,
+        PG_13,
+        PG,
+        R,
+        NC_17
+    }
+
 }
 
 /*

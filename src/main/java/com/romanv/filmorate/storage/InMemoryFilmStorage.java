@@ -14,7 +14,6 @@ import java.util.TreeMap;
 @Component
 public class InMemoryFilmStorage implements FilmStorage{
     private static TreeMap<Long, Film> films = new TreeMap<>();
-    @Override
     public ResponseEntity<Map<String, String>> addFilmToStorage(Film film) {
         if(!films.containsKey(film.getId())){
             films.put(film.getId(), film);
@@ -55,7 +54,7 @@ public class InMemoryFilmStorage implements FilmStorage{
     }
 
     @Override
-    public ResponseEntity<Map<String, String>> listTopTenFromStorage() {
+    public ResponseEntity<Object> listTopTenFromStorage() {
         return null;
     }
 

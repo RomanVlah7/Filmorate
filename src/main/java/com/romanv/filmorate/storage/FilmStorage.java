@@ -3,6 +3,7 @@ package com.romanv.filmorate.storage;
 import com.romanv.filmorate.model.Film;
 import org.springframework.http.ResponseEntity;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
@@ -17,10 +18,9 @@ public interface FilmStorage {
 
     List<Film> listFilmsFromStorage();
 
-    ResponseEntity<Map<String, String>> listTopTenFromStorage();
+    ResponseEntity<Object> listTopTenFromStorage();
 
     boolean contains(Long filmID);
 
     ResponseEntity<Map<String, String>> editFilmDataInStorage(Film film);
-
 }

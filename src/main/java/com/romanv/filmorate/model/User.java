@@ -1,6 +1,5 @@
 package com.romanv.filmorate.model;
 
-import com.romanv.filmorate.managers.UserIDManager;
 import lombok.Data;
 
 import javax.validation.constraints.Email;
@@ -21,10 +20,10 @@ public class User implements Comparable<User> {
     private String name;
     @Past
     private Instant birthDate;
-    private TreeMap<String, Long> friends;
-    private TreeSet<Long> likedFilms;
+    private int friends;
+    private int likedFilms;
 
-    public User(Long id, String email, String login, String name, Instant birthDate, TreeMap<String, Long> friends, TreeSet<Long> likedFilms) {
+    public User(Long id, String email, String login, String name, Instant birthDate, int friends, int likedFilms) {
         this.id = id;
         this.email = email;
         this.login = login;
@@ -41,19 +40,19 @@ public class User implements Comparable<User> {
     }
 
     public void addToFriendsList(User userToAdd) {
-        friends.put(userToAdd.getName(), userToAdd.getId());
+        //todo
     }
 
     public void addToLikedFilms(Long filmIDtoLike) {
-        if (likedFilms.contains(filmIDtoLike)) {
-            //nothing
-        } else {
-            likedFilms.add(filmIDtoLike);
-        }
+        //todo
     }
 
     public void removeFromLikedList(long filmID) {
         likedFilms.remove(filmID);
     }
 
+    private enum friendshipStatus{
+        UNPROVED,
+        PROVED
+    }
 }

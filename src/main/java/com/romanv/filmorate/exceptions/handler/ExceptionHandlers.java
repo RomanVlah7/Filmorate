@@ -33,7 +33,7 @@ public class ExceptionHandlers {
     @ExceptionHandler
     public static ResponseEntity<Map<String, String>> userNotFound(UserNotFoundException e) {
         return new ResponseEntity<>(
-                Map.of(e.getMessage(), "400"),
+                Map.of(e.getMessage(), "404"),
                 HttpStatus.BAD_REQUEST
         );
     }
@@ -49,7 +49,7 @@ public class ExceptionHandlers {
     @ExceptionHandler
     public static ResponseEntity<Map<String, String>> filmNotFound(FilmNotFoundException e) {
         return new ResponseEntity<>(
-                Map.of(e.getMessage(), "400"),
+                Map.of(e.getMessage(), "404"),
                 HttpStatus.BAD_REQUEST
         );
     }

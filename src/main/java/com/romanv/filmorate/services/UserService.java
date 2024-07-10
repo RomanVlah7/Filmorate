@@ -8,7 +8,6 @@ import com.romanv.filmorate.storage.InMemoryUserStorage;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.zalando.logbook.LogbookCreator;
 
 import java.util.List;
 import java.util.Map;
