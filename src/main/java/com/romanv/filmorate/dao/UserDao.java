@@ -13,12 +13,12 @@ public class UserDao implements UserDaoInterface {
 
     @Override
     public void addNewUserToUserDB(String name, String login) {
-        jdbcTemplate.execute("INSERT INTO all_users(username, login) VALUES ('" + name + "', '" + login + "')");
+        jdbcTemplate.update("INSERT INTO all_users(username, login) VALUES (?,?,)", name, login);
     }
 
     @Override
     public void deleteUserFromUserDB(Long userID) {
-        jdbcTemplate.execute("DELETE FROM all_users WHERE user_id = "+ userID +")");
+        jdbcTemplate.update("DELETE FROM all_users WHERE user_id = ?", userID);
     }
 
     @Override

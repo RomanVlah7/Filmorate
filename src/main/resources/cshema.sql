@@ -5,7 +5,7 @@ create table "films"
     description varchar,
     releaseDate timestamp,
     durationOfFilm integer,
-    peopleWhoLiked int,
+    likes int,
     filmGenre varchar(10)
     filmMPArate varchar (5),
     foreign key (popleWhoLiked) references (all_users.user_id)

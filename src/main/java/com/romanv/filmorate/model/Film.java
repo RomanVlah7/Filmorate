@@ -23,17 +23,17 @@ public class Film {
     private Instant releaseDate;
     @JsonDeserialize(using = DurationDesializer.class)
     private int durationOfFilm;
-    private int peopleWhoLiked;
+    private int likes;
     private String filmGenre;
     private String filmMPARate;
 
-    public Film(long id, String userName, String description, Instant releaseDate, int durationOfFilm, int peopleWhoLiked, String filmGenre, String filmMPARate) {
+    public Film(long id, String userName, String description, Instant releaseDate, int durationOfFilm, int likes, String filmGenre, String filmMPARate) {
         this.id = id;
         this.userName = userName;
         this.description = description;
         this.releaseDate = releaseDate;
         this.durationOfFilm = durationOfFilm;
-        this.peopleWhoLiked = peopleWhoLiked;
+        this.likes = likes;
         this.filmGenre = filmGenre;
         this.filmMPARate = filmMPARate;
     }
