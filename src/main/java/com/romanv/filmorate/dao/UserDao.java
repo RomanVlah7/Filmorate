@@ -1,18 +1,25 @@
 package com.romanv.filmorate.dao;
 
 import com.romanv.filmorate.dao.interfaces.UserDaoInterface;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.Map;
-
+@Component
 public class UserDao implements UserDaoInterface {
 
     private JdbcTemplate jdbcTemplate;
 
+    @Autowired
+    public UserDao(JdbcTemplate jdbcTemplate) {
+        this.jdbcTemplate = jdbcTemplate;
+    }
+
     @Override
     public void addNewUserToUserDB(String name, String login) {
-        jdbcTemplate.update("INSERT INTO all_users(username, login) VALUES (?,?,)", name, login);
+        jdbcTemplate.update("INSERT INTO all_users(username, login) VALUES (?,?)", name, login);
     }
 
     @Override
