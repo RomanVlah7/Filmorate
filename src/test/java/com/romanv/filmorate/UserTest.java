@@ -19,7 +19,7 @@ public class UserTest {
     private UserDao userDao;
 
     @Test
-    public void findUserByID(){
+    public void findUserByID() {
         List<Map<String, Object>> users = userDao.listUsersFromUserDB();
 
         assertThat(users.size())

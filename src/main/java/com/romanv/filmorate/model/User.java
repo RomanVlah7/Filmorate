@@ -6,8 +6,6 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Past;
 import java.time.Instant;
-import java.util.TreeMap;
-import java.util.TreeSet;
 
 @Data
 public class User implements Comparable<User> {
@@ -51,7 +49,7 @@ public class User implements Comparable<User> {
         //todo
     }
 
-    private enum friendshipStatus{
+    private enum friendshipStatus {
         UNPROVED,
         PROVED
     }

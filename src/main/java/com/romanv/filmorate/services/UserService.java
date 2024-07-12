@@ -1,8 +1,6 @@
 package com.romanv.filmorate.services;
 
 import com.romanv.filmorate.dao.UserDao;
-import com.romanv.filmorate.exceptions.handler.ExceptionHandlers;
-import com.romanv.filmorate.exceptions.handler.exceptions.UserNotFoundException;
 import com.romanv.filmorate.model.User;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,6 +1,6 @@
 package com.romanv.filmorate.controllers;
 
-import com.romanv.filmorate.model.Film;
+
 import com.romanv.filmorate.services.FilmService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
@@ -20,7 +20,7 @@ public class FilmController {
 
     @PostMapping("/addFilm")
     public void addFilm(@RequestParam String title, @RequestParam String description) {
-            filmService.addFilm(title, description);
+        filmService.addFilm(title, description);
     }
 
     //--------------------Patch Mapping------------------------------------------------------------------------

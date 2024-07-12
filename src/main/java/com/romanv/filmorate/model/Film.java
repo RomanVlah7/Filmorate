@@ -2,14 +2,11 @@ package com.romanv.filmorate.model;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.romanv.filmorate.deserializers.DurationDesializer;
-import com.romanv.filmorate.storage.InMemoryUserStorage;
 import lombok.Data;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Past;
-import java.time.Duration;
 import java.time.Instant;
-import java.util.TreeMap;
 
 @Data
 public class Film {
@@ -38,7 +35,7 @@ public class Film {
         this.filmMPARate = filmMPARate;
     }
 
-    public void likeThisFilm(long userIDwhoWantsToLike){
+    public void likeThisFilm(long userIDwhoWantsToLike) {
         //todo
     }
 
@@ -51,7 +48,7 @@ public class Film {
         ACTION_MOVIE
     }
 
-    private enum FilmMPARate{
+    private enum FilmMPARate {
         G,
         PG_13,
         PG,

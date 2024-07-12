@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.Map;
+
 @Component
 public class UserDao implements UserDaoInterface {
 
@@ -28,7 +29,7 @@ public class UserDao implements UserDaoInterface {
     }
 
     @Override
-    public List<Map<String,Object>> listUsersFromUserDB() {
+    public List<Map<String, Object>> listUsersFromUserDB() {
         return jdbcTemplate.queryForList("SELECT name, login FROM all_users");
     }
 

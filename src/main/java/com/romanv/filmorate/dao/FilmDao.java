@@ -7,10 +7,12 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.Map;
+
 @Component
 public class FilmDao implements FilmDaoInterface {
 
     JdbcTemplate jdbcTemplate;
+
     @Autowired
     public FilmDao(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
@@ -37,7 +39,7 @@ public class FilmDao implements FilmDaoInterface {
     }
 
     @Override
-    public List<Map<String,Object>> listFilmsFromDB() {
+    public List<Map<String, Object>> listFilmsFromDB() {
         return jdbcTemplate.queryForList("SELECT title, description FROM films");
     }
 

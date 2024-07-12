@@ -12,21 +12,25 @@ import java.util.Map;
 import java.util.TreeMap;
 
 @Component
-public class InMemoryFilmStorage implements FilmStorage{
+public class InMemoryFilmStorage implements FilmStorage {
     private static TreeMap<Long, Film> films = new TreeMap<>();
 
+    public static Film getById(Long filmID) {
+        return films.get(filmID);
+    }
+
     public ResponseEntity<Map<String, String>> addFilmToStorage(Film film) {
-        if(!films.containsKey(film.getId())){
+        if (!films.containsKey(film.getId())) {
             films.put(film.getId(), film);
             return null;
-        } else{
+        } else {
             return ExceptionHandlers.filmAlreadyExists(new FilmAlreadyExistsException());
         }
     }
 
     @Override
     public ResponseEntity<Map<String, String>> deleteFilmFromStorage(Long filmID) {
-        if(!films.containsKey(filmID)){
+        if (!films.containsKey(filmID)) {
             return ExceptionHandlers.filmNotFound(new FilmNotFoundException());
         } else {
             films.remove(filmID);
@@ -36,7 +40,7 @@ public class InMemoryFilmStorage implements FilmStorage{
 
     @Override
     public ResponseEntity<Map<String, String>> likeFilmFromStorage(Long filmID, Long userIdWhoWantsToLikeFilm) {
-        if(films.containsKey(filmID)){
+        if (films.containsKey(filmID)) {
             films.get(filmID).likeThisFilm(userIdWhoWantsToLikeFilm);
             return null;
         } else {
@@ -66,16 +70,12 @@ public class InMemoryFilmStorage implements FilmStorage{
 
     @Override
     public ResponseEntity<Map<String, String>> editFilmDataInStorage(Film film) {
-        if(!films.containsKey(film.getId())){
+        if (!films.containsKey(film.getId())) {
             return ExceptionHandlers.filmNotFound(new FilmNotFoundException());
         } else {
             films.remove(film.getId());
-            films.put(film.getId(),film);
+            films.put(film.getId(), film);
             return null;
         }
-    }
-
-    public static Film getById(Long filmID){
-        return films.get(filmID);
     }
 }

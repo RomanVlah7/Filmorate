@@ -12,9 +12,9 @@ public interface FilmDaoInterface {
 
     void removeLikeForFilmFromDB(Long filmID);
 
-    List<Map<String,Object>> listFilmsFromDB();
+    List<Map<String, Object>> listFilmsFromDB();
 
-    List<Map<String,Object>> listTopTenFromDB();
+    List<Map<String, Object>> listTopTenFromDB();
 
     void editFilmDataInDB(Long filmID, String newTitle, String newDescription);
 }

@@ -13,6 +13,15 @@ public class InMemoryUserStorage implements UserStorage {
 
     private final static ArrayList<User> users = new ArrayList<>();
 
+    public static User getById(long userID) {
+        for (int i = 0; i < users.size(); i++) {
+            if (users.get(i).getId() == userID) {
+                return users.get(i);
+            }
+        }
+        return null;
+    }
+
     @Override
     public void addNewUserToUserStorage(User user) {
         users.add(user);
@@ -37,19 +46,10 @@ public class InMemoryUserStorage implements UserStorage {
     public boolean containsUserWithID(Long userID) {
         boolean result = false;
         for (int i = 0; i < users.size(); i++) {
-            if(users.get(i).getId().equals(userID)) {
+            if (users.get(i).getId().equals(userID)) {
                 result = true;
             }
         }
         return result;
-    }
-
-    public static User getById(long userID){
-        for (int i = 0; i < users.size(); i++) {
-            if(users.get(i).getId() == userID){
-                return users.get(i);
-            }
-        }
-        return null;
     }
 }
