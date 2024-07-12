@@ -1,40 +1,38 @@
 package com.romanv.filmorate.services;
 
-import com.romanv.filmorate.exceptions.handler.ExceptionHandlers;
-import com.romanv.filmorate.exceptions.handler.exceptions.FilmAlreadyExistsException;
-import com.romanv.filmorate.model.Film;
-import com.romanv.filmorate.storage.InMemoryFilmStorage;
-import org.springframework.http.ResponseEntity;
+import com.romanv.filmorate.dao.FilmDao;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Map;
 
 @Service
 public class FilmService implements FilmIServiceInterface {
-    private InMemoryFilmStorage inMemoryFilmStorage = new InMemoryFilmStorage();
 
-    @Override
-    public ResponseEntity<Map<String, String>> addFilm(Film film) {
-        if (inMemoryFilmStorage.contains(film.getId())) {
-            return ExceptionHandlers.filmAlreadyExists(new FilmAlreadyExistsException());
-        } else {
-            inMemoryFilmStorage.addFilmToStorage(film);
-            return null;
-        }
+    private final FilmDao filmDao;
+
+    @Autowired
+    public FilmService(FilmDao filmDao) {
+        this.filmDao = filmDao;
     }
 
     @Override
-    public List<Film> listFilms() {
-        return inMemoryFilmStorage.listFilmsFromStorage();
+    public void addFilm(String title, String description) {
+        filmDao.addFilmToDB(title, description);
     }
 
     @Override
-    public ResponseEntity<Map<String, String>> updateFilmData(Film film) {
-        return inMemoryFilmStorage.editFilmDataInStorage(film);
+    public List<Map<String, Object>> listFilms() {
+        return filmDao.listFilmsFromDB();
     }
 
     @Override
-    public boolean contains(Long filmID) {
-        return inMemoryFilmStorage.contains(filmID);
+    public void updateFilmData(Long filmID, String newTitle, String newDescription) {
+        filmDao.editFilmDataInDB(filmID, newTitle, newDescription);
+    }
+
+    @Override
+    public void likeFilm(Long filmID) {
+        filmDao.likeFilmFromDB(filmID);
     }
 }

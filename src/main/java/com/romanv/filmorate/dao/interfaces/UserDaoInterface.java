@@ -10,4 +10,6 @@ public interface UserDaoInterface {
     void deleteUserFromUserDB(Long userID);
 
     List<Map<String,Object>> listUsersFromUserDB();
+
+    void editUserDataFromDB(String userID, String name, String login);
 }

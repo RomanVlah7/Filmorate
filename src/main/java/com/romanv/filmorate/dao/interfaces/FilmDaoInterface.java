@@ -16,5 +16,5 @@ public interface FilmDaoInterface {
 
     List<Map<String,Object>> listTopTenFromDB();
 
-    void editFilmDataInDB(String filmID, String newTitle, String newDescription);
+    void editFilmDataInDB(Long filmID, String newTitle, String newDescription);
 }

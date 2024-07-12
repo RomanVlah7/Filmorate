@@ -1,11 +1,11 @@
 package com.romanv.filmorate.services;
 
+import com.romanv.filmorate.dao.UserDao;
 import com.romanv.filmorate.exceptions.handler.ExceptionHandlers;
-import com.romanv.filmorate.exceptions.handler.exceptions.UserAlreadyExistsException;
 import com.romanv.filmorate.exceptions.handler.exceptions.UserNotFoundException;
 import com.romanv.filmorate.model.User;
-import com.romanv.filmorate.storage.InMemoryUserStorage;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -17,55 +17,36 @@ import java.util.Map;
 
 public class UserService implements UserServiceInterface {
 
-    private final InMemoryUserStorage inMemoryUserStorage = new InMemoryUserStorage();
-    private final ExceptionHandlers exceptionHandler = new ExceptionHandlers();
+    private final UserDao userDao;
 
-
-    @Override
-    public ResponseEntity<Map<String, String>> addUser(User user) {
-        if (inMemoryUserStorage.containsUserWithID(user.getId())) {
-            return ExceptionHandlers.userAlreadyExists(new UserAlreadyExistsException());
-        }else {
-            inMemoryUserStorage.addNewUserToUserStorage(user);
-            return null;
-        }
+    @Autowired
+    public UserService(UserDao userDao) {
+        this.userDao = userDao;
     }
 
     @Override
-    public List<User> listUsers() {
-        return inMemoryUserStorage.listUsersFromUserStorage();
+    public void addUser(String name, String login) {
+        userDao.addNewUserToUserDB(name, login);
+    }
+
+    @Override
+    public List<Map<String, Object>> listUsers() {
+        return userDao.listUsersFromUserDB();
     }
 
     @Override
     public ResponseEntity<Map<String, String>> mutualAdditionToFriends(User user1, User user2) {
-        if (!inMemoryUserStorage.containsUserWithID(user1.getId()) || !inMemoryUserStorage.containsUserWithID(user2.getId())) {
-            return ExceptionHandlers.userNotFound(new UserNotFoundException());
-        } else {
-            user1.addToFriendsList(user2);
-            user2.addToFriendsList(user1);
-            return null;
-        }
+        //todo
+        return null;
     }
 
     @Override
-    public ResponseEntity<Map<String, String>> deleteUser(Long userID) {
-        if (inMemoryUserStorage.containsUserWithID(userID)) {
-            inMemoryUserStorage.deleteUserFromUserStorage(userID);
-            return null;
-        } else {
-            return ExceptionHandlers.userNotFound(new UserNotFoundException());
-        }
+    public void deleteUser(Long userID) {
+        userDao.deleteUserFromUserDB(userID);
     }
 
     @Override
-    public ResponseEntity<Map<String, String>> editUserData(User editedUser) {
-        Long userID = editedUser.getId();
-        if(inMemoryUserStorage.containsUserWithID(editedUser.getId())){
-            inMemoryUserStorage.deleteUserFromUserStorage(userID);
-            inMemoryUserStorage.addNewUserToUserStorage(editedUser);
-            return null;
-        } else {
-            return ExceptionHandlers.userNotFound(new UserNotFoundException());
-        }
+    public void editUserData(String userID, String name, String login) {
+        userDao.editUserDataFromDB(userID, name, login);
     }
 }

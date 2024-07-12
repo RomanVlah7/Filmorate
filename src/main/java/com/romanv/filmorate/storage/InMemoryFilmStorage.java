@@ -14,6 +14,7 @@ import java.util.TreeMap;
 @Component
 public class InMemoryFilmStorage implements FilmStorage{
     private static TreeMap<Long, Film> films = new TreeMap<>();
+
     public ResponseEntity<Map<String, String>> addFilmToStorage(Film film) {
         if(!films.containsKey(film.getId())){
             films.put(film.getId(), film);

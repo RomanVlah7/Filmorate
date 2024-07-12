@@ -3,6 +3,7 @@ package com.romanv.filmorate.controllers;
 import com.romanv.filmorate.model.User;
 import com.romanv.filmorate.services.UserService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,19 +15,24 @@ import java.util.Map;
 @RequestMapping("/user")
 public class UserController {
 
-    private final UserService userService = new UserService();
+    private final UserService userService;
+
+    @Autowired
+    public UserController(UserService userService) {
+        this.userService = userService;
+    }
 
     //------------------Post Mapping-----------------------------------------------------------------------------
     @PostMapping("/addUser")
-    public ResponseEntity<Map<String, String>> addUser(@RequestBody User user) {
-        return userService.addUser(user);
+    public void addUser(@RequestParam String name, @RequestParam String login) {
+        userService.addUser(name, login);
     }
 
     //-------------------Patch Mapping-----------------------------------------------------------------------
 
     @PatchMapping("/updateUserData")
-    public ResponseEntity<Map<String, String>> updateUserData(@RequestBody User user) {
-        return userService.editUserData(user);
+    public void updateUserData(@RequestParam String userID, @RequestParam String name, @RequestParam String login) {
+        userService.editUserData(userID, name, login);
     }
 
     @PatchMapping("/mutualAdditionToFriends")
@@ -35,14 +41,14 @@ public class UserController {
     }
 
     @PatchMapping("/deleteUser")
-    public ResponseEntity<Map<String, String>> deleteUser(Long userID) {
-        return userService.deleteUser(userID);
+    public void deleteUser(Long userID) {
+        userService.deleteUser(userID);
     }
 
     //-------------------Get Mapping-------------------------------------------------------------------------------
 
     @GetMapping("/getUsers")
-    public List<User> getUsers() {
+    public List<Map<String, Object>> getUsers() {
         return userService.listUsers();
     }
 }

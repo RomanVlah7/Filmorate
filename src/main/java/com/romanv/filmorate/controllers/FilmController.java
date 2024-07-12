@@ -1,9 +1,6 @@
 package com.romanv.filmorate.controllers;
 
-import com.romanv.filmorate.exceptions.handler.ExceptionHandlers;
-import com.romanv.filmorate.exceptions.handler.exceptions.FilmAlreadyExistsException;
 import com.romanv.filmorate.model.Film;
-import com.romanv.filmorate.model.User;
 import com.romanv.filmorate.services.FilmService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
@@ -17,36 +14,33 @@ import java.util.Map;
 @Slf4j
 public class FilmController {
 
-    private FilmService filmService = new FilmService();
+    private FilmService filmService;
 
     //----------------Post Mapping-----------------------------------------------------------------------
 
     @PostMapping("/addFilm")
-    public ResponseEntity<Map<String, String>> addFilm(@RequestBody Film film) {
-        if (filmService.contains(film.getId())) {
-            return ExceptionHandlers.filmAlreadyExists(new FilmAlreadyExistsException());
-        } else {
-            filmService.addFilm(film);
-            return null;
-        }
+    public void addFilm(@RequestParam String title, @RequestParam String description) {
+            filmService.addFilm(title, description);
     }
 
     //--------------------Patch Mapping------------------------------------------------------------------------
 
     @PatchMapping("/editFilm")
-    public void updateFilmData(@RequestBody Film film) {
-        filmService.updateFilmData(film);
+    public void updateFilmData(@RequestParam Long filmID, @RequestParam String newTitle,
+                               @RequestParam String newDescription) {
+        filmService.updateFilmData(filmID, newTitle, newDescription);
     }
 
     @PatchMapping("/likeFilm")
-    public ResponseEntity<Map<String, String>> likeTheFilm(@RequestHeader Long userIDWhoLikedFilm, @RequestHeader Long filmIDToLike) {
-        return filmService.likeFilm(userIDWhoLikedFilm, filmIDToLike);
+    public ResponseEntity<Map<String, String>> likeTheFilm(@RequestParam Long filmIDToLike) {
+        filmService.likeFilm(filmIDToLike);
+        return null;
     }
 
     //--------------------Get Mapping------------------------------------------------------------------------
 
     @GetMapping("/listFilms")
-    public List<Film> listFilms() {
+    public List<Map<String, Object>> listFilms() {
         return filmService.listFilms();
     }
 

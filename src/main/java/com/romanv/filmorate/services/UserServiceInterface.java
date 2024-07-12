@@ -7,13 +7,13 @@ import java.util.List;
 import java.util.Map;
 
 public interface UserServiceInterface {
-    ResponseEntity<Map<String, String>> addUser(User user);
+    void addUser(String name, String login);
 
-    List<User> listUsers();
+    List<Map<String, Object>> listUsers();
 
     ResponseEntity<Map<String, String>> mutualAdditionToFriends(User user1, User user2);
 
-    ResponseEntity<Map<String, String>> deleteUser(Long userID);
+    void deleteUser(Long userID);
 
-    public ResponseEntity<Map<String, String>> editUserData(User editedUser);
+    public void editUserData(String userID, String name, String login);
 }

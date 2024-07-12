@@ -1,17 +1,14 @@
 package com.romanv.filmorate.services;
 
-import com.romanv.filmorate.model.Film;
-import org.springframework.http.ResponseEntity;
-
 import java.util.List;
 import java.util.Map;
 
 public interface FilmIServiceInterface {
-    ResponseEntity<Map<String, String>> addFilm(Film film);
+    void addFilm(String title, String description);
 
-    List<Film> listFilms();
+    List<Map<String, Object>> listFilms();
 
-    ResponseEntity<Map<String, String>> updateFilmData(Film film);
+    void updateFilmData(Long filmID, String newTitle, String newDescription);
 
-    boolean contains(Long filmID);
+    void likeFilm(Long filmID);
 }
