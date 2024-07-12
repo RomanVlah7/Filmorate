@@ -13,7 +13,7 @@ import java.util.TreeMap;
 
 @Component
 public class InMemoryFilmStorage implements FilmStorage {
-    private static TreeMap<Long, Film> films = new TreeMap<>();
+    private static final TreeMap<Long, Film> films = new TreeMap<>();
 
     public static Film getById(Long filmID) {
         return films.get(filmID);

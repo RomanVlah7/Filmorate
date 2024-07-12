@@ -11,7 +11,7 @@ import java.util.Map;
 @Component
 public class UserDao implements UserDaoInterface {
 
-    private JdbcTemplate jdbcTemplate;
+    private final JdbcTemplate jdbcTemplate;
 
     @Autowired
     public UserDao(JdbcTemplate jdbcTemplate) {

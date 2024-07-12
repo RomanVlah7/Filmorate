@@ -14,9 +14,9 @@ public class InMemoryUserStorage implements UserStorage {
     private final static ArrayList<User> users = new ArrayList<>();
 
     public static User getById(long userID) {
-        for (int i = 0; i < users.size(); i++) {
-            if (users.get(i).getId() == userID) {
-                return users.get(i);
+        for (User user : users) {
+            if (user.getId() == userID) {
+                return user;
             }
         }
         return null;

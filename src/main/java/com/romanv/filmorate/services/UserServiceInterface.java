@@ -15,5 +15,5 @@ public interface UserServiceInterface {
 
     void deleteUser(Long userID);
 
-    public void editUserData(String userID, String name, String login);
+    void editUserData(String userID, String name, String login);
 }
