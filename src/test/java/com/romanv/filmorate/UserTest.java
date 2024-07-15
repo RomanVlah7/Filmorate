@@ -16,13 +16,30 @@ import static org.assertj.core.api.Assertions.assertThat;
 @AutoConfigureTestDatabase
 @RequiredArgsConstructor(onConstructor_ = @Autowired)
 public class UserTest {
+
+    @Autowired
     private UserDao userDao;
 
     @Test
-    public void findUserByID() {
+    public void findUserByIDtest() {
         List<Map<String, Object>> users = userDao.listUsersFromUserDB();
 
         assertThat(users.size())
                 .isEqualTo(5);
+    }
+
+    @Test
+    void addNewUserToUserDBtest() {
+        userDao.addNewUserToUserDB("Jack", "jjj333");
+    }
+
+    @Test
+    void deleteUserFromUserDBtest() {
+        userDao.deleteUserFromUserDB(1l);
+    }
+
+    @Test
+    void editUserDataFromDBtest() {
+        userDao.editUserDataFromDB("1", "Marko", "marrrr3");
     }
 }

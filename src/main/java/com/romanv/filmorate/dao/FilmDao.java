@@ -20,7 +20,7 @@ public class FilmDao implements FilmDaoInterface {
 
     @Override
     public void addFilmToDB(String title, String description) {
-        jdbcTemplate.update("INSERT INTO films(title, description) VALUES ?, ?", title, description);
+        jdbcTemplate.update("INSERT INTO films(title, description) VALUES (?, ?)", title, description);
     }
 
     @Override

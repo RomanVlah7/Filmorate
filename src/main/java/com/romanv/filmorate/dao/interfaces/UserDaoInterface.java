@@ -11,5 +11,5 @@ public interface UserDaoInterface {
 
     List<Map<String, Object>> listUsersFromUserDB();
 
-    void editUserDataFromDB(String userID, String name, String login);
+    void editUserDataFromDB(String userID, String newName, String newLogin);
 }

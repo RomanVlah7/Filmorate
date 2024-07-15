@@ -20,7 +20,7 @@ public class UserDao implements UserDaoInterface {
 
     @Override
     public void addNewUserToUserDB(String name, String login) {
-        jdbcTemplate.update("INSERT INTO all_users(username, login) VALUES (?,?)", name, login);
+        jdbcTemplate.update("INSERT INTO all_users(name, login) VALUES (?,?)", name, login);
     }
 
     @Override
@@ -34,7 +34,7 @@ public class UserDao implements UserDaoInterface {
     }
 
     @Override
-    public void editUserDataFromDB(String userID, String name, String login) {
-        jdbcTemplate.update("UPDATE all_users SET name = ? login =  ? WHERE userID = ?", name, login, userID);
+    public void editUserDataFromDB(String userID, String newName, String newLogin) {
+        jdbcTemplate.update("UPDATE all_users SET name = ?, login =  ? WHERE user_id = ?", newName, newLogin, userID);
     }
 }
